@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/session.php';
 // LENGTH INSERITA IN INPUT
 $length = $_GET['length'];
 
