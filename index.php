@@ -1,5 +1,4 @@
 <?php
-
 // LENGTH INSERITA IN INPUT
 $length = $_GET['length'];
 
@@ -16,10 +15,11 @@ function generatePassword($length)
   return $password;
 };
 
-if ($length > 0) {
-  $password = generatePassword($length);
+if (isset($_GET['length'])) {
+  if ($length > 0) {
+    $password = generatePassword($length);
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -35,11 +35,16 @@ if ($length > 0) {
   <!-- FORM -->
   <form action="index.php" method="get">
     <label for="length">Scegli la lunghezza della password</label>
-    <input type="number" placeholder="lunghezza" id="length">
-    <button>Invia</button>
+    <input type="number" name="length" placeholder="lunghezza" id="length">
+    <button type="submit">Invia</button>
   </form>
-  <h2>Password generata: </h2>
-  <p><?php echo $password ?></p>
+  <!-- VERIFICA INSERIMENTO LUNGHEZZA -->
+  <?php if ($password) : ?>
+    <h2>Password generata: </h2>
+    <p><?php echo $password; ?></p>
+  <?php else : ?>
+    <p>Inserisci una lunghezza valida</p>
+  <?php endif; ?>
 </body>
 
 </html>
